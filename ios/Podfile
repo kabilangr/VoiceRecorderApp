@@ -20,7 +20,9 @@ target 'VoiceRecorderApp' do
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
+    :app_path => "#{Pod::Config.instance.installation_root}/..",
+    # Explicitly enable new architecture
+    :new_arch_enabled => true
   )
 
   post_install do |installer|
