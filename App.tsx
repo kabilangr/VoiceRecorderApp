@@ -258,7 +258,9 @@ function AppContent() {
     try {
       const dirPath = RNFS.DocumentDirectoryPath;
       const result = await RNFS.readDir(dirPath);
-      const audioFiles = result.filter(item => item.name.endsWith('.m4a') || item.name.endsWith('.mp4'));
+      const audioFiles = result
+        .filter(item => item.name.endsWith('.m4a') || item.name.endsWith('.mp4'))
+        .sort((a, b) => b.mtime!.getTime() - a.mtime!.getTime());
       const formattedRecordings = audioFiles.map(file => ({
         name: file.name,
         path: file.path,
